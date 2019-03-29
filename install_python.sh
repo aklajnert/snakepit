@@ -1,9 +1,9 @@
 set -ex
 apk add --no-cache --virtual .fetch-deps gnupg tar xz
-wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz"
-wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc"
+wget -O python.tar.xz "https://www.python.org/ftp/python/${1%%[a-z]*}/Python-$1.tar.xz"
+wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${1%%[a-z]*}/Python-$1.tar.xz.asc"
 export GNUPGHOME="$(mktemp -d)"
-gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"
+gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$2"
 gpg --batch --verify python.tar.xz.asc python.tar.xz
 { command -v gpgconf > /dev/null && gpgconf --kill all || :; }
 rm -rf "$GNUPGHOME" python.tar.xz.asc
@@ -63,7 +63,7 @@ rm -rf /usr/src/python
 python3 --version
 
 cd /
-python${PYTHON_VERSION:0:3} get-pip.py \
+python${1:0:3} get-pip.py \
 		--disable-pip-version-check \
 		--no-cache-dir \
 		"pip==$PYTHON_PIP_VERSION" \
