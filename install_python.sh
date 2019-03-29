@@ -33,6 +33,7 @@ apk add --no-cache --virtual .build-deps  \
 		tcl-dev \
 		tk \
 		tk-dev \
+		util-linux-dev \
 		xz-dev \
 		zlib-dev
 apk del .fetch-deps
@@ -60,7 +61,7 @@ find /usr/local -depth \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 		\) -exec rm -rf '{}' +
 rm -rf /usr/src/python
-python3 --version
+python${1:0:1} --version
 
 cd /
 python${1:0:3} get-pip.py \
