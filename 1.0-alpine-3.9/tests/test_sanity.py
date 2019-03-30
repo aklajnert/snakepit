@@ -33,3 +33,9 @@ def test_other_versions_subprocess():
         if sys.version_info[0] == 3
         else "Python 3.7.3"
     )
+
+
+def test_imports():
+    if sys.version_info[:2] >= (3, 6):
+        import secrets
+        assert secrets
