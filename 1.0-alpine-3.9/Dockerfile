@@ -18,4 +18,4 @@ RUN /bin/sh install_python.sh 3.7.3 0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D
 RUN rm install_python.sh get-pip.py
 
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
