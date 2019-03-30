@@ -4,13 +4,22 @@ Docker image with multiple python interpreter versions.
 
 It bases on the official python image, with very minor changes.
 
-## 1.0-alpine-3.9
+## 1.0
+
+Available versions:
+- 1.0-alpine-3.9: based on alpine:3.9
+- 1.0-stretch-slim: based on debian:stretch-slim
 
 Available interpreters:
 - 2.7.16
 - 3.5.7
 - 3.6.8
 - 3.7.3
+
+```bash
+docker pull aklajnert/snakepit:1.0-alpine-3.9
+docker pull aklajnert/snakepit:1.0-stretch-slim
+```
 
 ```bash
 $ docker run -it --rm snakepit
@@ -28,3 +37,4 @@ Python 3.6.8
 / # python3.7 --version
 Python 3.7.3
 ```
+
