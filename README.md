@@ -2,6 +2,10 @@
 
 Docker image with multiple python interpreter versions.
 
+It bases on the official python image, with very minor changes.
+
+## 1.0-alpine-3.9
+
 Available interpreters:
 - 2.7.16
 - 3.5.7
