@@ -32,9 +32,8 @@ mkdir -p /usr/src/python
 tar -xJC /usr/src/python --strip-components=1 -f python.tar.xz
 rm python.tar.xz
 cd /usr/src/python
-gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"
 ./configure
-		--build="$gnuArch" \
+		--build="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" \
 		--enable-loadable-sqlite-extensions \
 		--enable-shared \
 		--with-system-expat \
