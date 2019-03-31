@@ -8,6 +8,7 @@ apt-get install -y --no-install-recommends \
 		gcc \
 		libbz2-dev \
 		libc6-dev \
+		libdb-dev \
 		libgdbm-dev \
 		libncursesw5-dev \
 		libreadline-dev \
@@ -19,12 +20,6 @@ apt-get install -y --no-install-recommends \
 		xz-utils \
 		zlib1g-dev \
 		$(command -v gpg > /dev/null || echo 'gnupg dirmngr')
-
-if [ ${1:0:1} = "2" ]; then
-    apt-get install -y --no-install-recommends libdb-dev
-else
-    apt-get install -y --no-install-recommends libexpat1-dev libffi-dev liblzma-dev
-fi
 
 
 wget -O python.tar.xz "https://www.python.org/ftp/python/${1%%[a-z]*}/Python-$1.tar.xz"
@@ -39,20 +34,10 @@ tar -xJC /usr/src/python --strip-components=1 -f python.tar.xz
 rm python.tar.xz
 cd /usr/src/python
 gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"
-if [ ${1:0:1} = "2" ]; then
-    ./configure \
+./configure \
 		--build="$gnuArch" \
 		--enable-shared \
 		--enable-unicode=ucs4
-else
-    ./configure \
-		--build="$gnuArch" \
-		--enable-loadable-sqlite-extensions \
-		--enable-shared \
-		--with-system-expat \
-		--with-system-ffi \
-		--without-ensurepip
-fi
 
 make -j "$(nproc)"
 make install
