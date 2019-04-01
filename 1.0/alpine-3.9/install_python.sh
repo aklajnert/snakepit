@@ -3,7 +3,13 @@ apk add --no-cache --virtual .fetch-deps gnupg tar xz
 wget -O python.tar.xz "https://www.python.org/ftp/python/${1%%[a-z]*}/Python-$1.tar.xz"
 wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${1%%[a-z]*}/Python-$1.tar.xz.asc"
 export GNUPGHOME="$(mktemp -d)"
-gpg --batch --keyserver eu.pool.sks-keyservers.net --recv-keys "$2"
+
+gpg --batch --keyserver pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver eu.pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver p80.pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver na.pool.sks-keyservers.net --recv-keys "$2"
+
 gpg --batch --verify python.tar.xz.asc python.tar.xz
 { command -v gpgconf > /dev/null && gpgconf --kill all || :; }
 rm -rf "$GNUPGHOME" python.tar.xz.asc

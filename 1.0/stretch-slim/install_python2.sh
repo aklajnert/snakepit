@@ -25,7 +25,13 @@ apt-get install -y --no-install-recommends \
 wget -O python.tar.xz "https://www.python.org/ftp/python/${1%%[a-z]*}/Python-$1.tar.xz"
 wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${1%%[a-z]*}/Python-$1.tar.xz.asc"
 export GNUPGHOME="$(mktemp -d)"
-gpg --batch --keyserver eu.pool.sks-keyservers.net --recv-keys "$2"
+
+gpg --batch --keyserver pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver eu.pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver p80.pool.sks-keyservers.net --recv-keys "$2" ||
+gpg --batch --keyserver na.pool.sks-keyservers.net --recv-keys "$2"
+
 gpg --batch --verify python.tar.xz.asc python.tar.xz
 { command -v gpgconf > /dev/null && gpgconf --kill all || :; }
 rm -rf "$GNUPGHOME" python.tar.xz.asc
@@ -33,9 +39,8 @@ mkdir -p /usr/src/python
 tar -xJC /usr/src/python --strip-components=1 -f python.tar.xz
 rm python.tar.xz
 cd /usr/src/python
-gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"
 ./configure \
-		--build="$gnuArch" \
+		--build="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" \
 		--enable-shared \
 		--enable-unicode=ucs4
 
