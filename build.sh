@@ -16,4 +16,4 @@ docker build -t snakepit:1.0-stretch-slim .
 docker tag snakepit:1.0-stretch-slim aklajnert/snakepit:1.0-stretch-slim
 
 cd ..
-docker build . -f alpine-3.9/test.Dockerfile
+docker build . -f stretch-slim/test.Dockerfile

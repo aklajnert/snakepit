@@ -72,6 +72,7 @@ python${1:0:1} --version
 
 cd /
 
+savedAptMark="$(apt-mark showmanual)"
 apt-get update
 apt-get install -y --no-install-recommends wget
 apt-mark auto '.*' > /dev/null
@@ -82,7 +83,7 @@ python${1:0:1} get-pip.py \
 		--disable-pip-version-check \
 		--no-cache-dir \
 		"pip==$PYTHON_PIP_VERSION"
-pip --version
+pip${1:0:1} --version
 find /usr/local -depth \
 		\( \
 			\( -type d -a \( -name test -o -name tests \) \) \
