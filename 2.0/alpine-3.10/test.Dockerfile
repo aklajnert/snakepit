@@ -1,4 +1,4 @@
-FROM snakepit:1.0-alpine-3.9
+FROM snakepit:2.0-alpine-3.10
 
 ADD ./tests /tests
 WORKDIR /tests

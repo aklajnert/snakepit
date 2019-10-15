@@ -1,4 +1,4 @@
-FROM snakepit:1.0-stretch-slim
+FROM snakepit:2.0-bullseye-slim
 
 ADD ./tests /tests
 WORKDIR /tests
