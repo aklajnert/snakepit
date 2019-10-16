@@ -14,7 +14,7 @@ Available interpreters:
 - 2.7.16
 - 3.5.7
 - 3.6.9
-- 3.7.4
+- 3.7.5
 - 3.8.0
 
 ## 1.0
@@ -50,7 +50,7 @@ Python 3.5.7
 / # python3.6 --version
 Python 3.6.9
 / # python3.7 --version
-Python 3.7.4
+Python 3.7.5
 / # python3.8 --version
 Python 3.8.0
 ```

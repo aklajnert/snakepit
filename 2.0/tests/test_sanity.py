@@ -4,7 +4,7 @@ import sys
 
 def test_version():
     """Check if all versions are able to run pytest and confirm version."""
-    versions = ((2, 7, 16), (3, 5, 7), (3, 6, 9), (3, 7, 4), (3, 8, 0))
+    versions = ((2, 7, 16), (3, 5, 7), (3, 6, 9), (3, 7, 5), (3, 8, 0))
     assert sys.version_info[:3] in versions
 
 
@@ -23,7 +23,7 @@ def test_other_versions_subprocess():
 
     assert _check_output("python3.5") == "Python 3.5.7"
     assert _check_output("python3.6") == "Python 3.6.9"
-    assert _check_output("python3.7") == "Python 3.7.4"
+    assert _check_output("python3.7") == "Python 3.7.5"
     assert _check_output("python3.8") == "Python 3.8.0"
     assert _check_output("python2.7") == "Python 2.7.16"
 
