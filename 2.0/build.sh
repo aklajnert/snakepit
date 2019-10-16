@@ -9,6 +9,7 @@ cd $VERSION
 cd $ALPINE
 docker build -t snakepit:$VERSION-$ALPINE .
 docker tag snakepit:$VERSION-$ALPINE aklajnert/snakepit:$VERSION-$ALPINE
+docker tag snakepit:$VERSION-$ALPINE aklajnert/snakepit:latest
 
 cd ..
 docker build . -f $ALPINE/test.Dockerfile
