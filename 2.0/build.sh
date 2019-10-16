@@ -1,16 +1,21 @@
-cd 2.0
+#!/usr/bin/env bash
 
-cd alpine-3.10
-docker build -t snakepit:2.0-alpine-3.10 .
-docker tag snakepit:2.0-alpine-3.10 aklajnert/snakepit:2.0-alpine-3.10
+VERSION=2.0
+ALPINE=alpine-3.10
+DEBIAN=bullseye-slim
 
+cd $VERSION
 
-cd ..
-docker build . -f alpine-3.10/test.Dockerfile
-
-cd bullseye-slim
-docker build -t snakepit:2.0-bullseye-slim .
-docker tag snakepit:2.0-bullseye-slim aklajnert/snakepit:2.0-bullseye-slim
+cd $ALPINE
+docker build -t snakepit:$VERSION-$ALPINE .
+docker tag snakepit:$VERSION-$ALPINE aklajnert/snakepit:$VERSION-$ALPINE
 
 cd ..
-docker build . -f bullseye-slim/test.Dockerfile
+docker build . -f $ALPINE/test.Dockerfile
+
+cd $DEBIAN
+docker build -t snakepit:$VERSION-$DEBIAN .
+docker tag snakepit:$VERSION-$DEBIAN aklajnert/snakepit:$VERSION-$DEBIAN
+
+cd ..
+docker build . -f $DEBIAN/test.Dockerfile
