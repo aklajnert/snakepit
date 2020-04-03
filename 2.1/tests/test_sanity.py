@@ -4,7 +4,7 @@ import sys
 
 def test_version():
     """Check if all versions are able to run pytest and confirm version."""
-    versions = ((2, 7, 16), (3, 5, 7), (3, 6, 9), (3, 7, 5), (3, 8, 0))
+    versions = ((2, 7, 17), (3, 5, 9), (3, 6, 9), (3, 7, 7), (3, 8, 2))
     assert sys.version_info[:3] in versions
 
 
@@ -21,18 +21,18 @@ def test_other_versions_subprocess():
         version = stdout.decode() + stderr.decode()
         return version.rstrip()
 
-    assert _check_output("python3.5") == "Python 3.5.7"
+    assert _check_output("python3.5") == "Python 3.5.9"
     assert _check_output("python3.6") == "Python 3.6.9"
-    assert _check_output("python3.7") == "Python 3.7.5"
-    assert _check_output("python3.8") == "Python 3.8.0"
-    assert _check_output("python2.7") == "Python 2.7.16"
+    assert _check_output("python3.7") == "Python 3.7.7"
+    assert _check_output("python3.8") == "Python 3.8.2"
+    assert _check_output("python2.7") == "Python 2.7.17"
 
     assert _check_output("python") == "Python {0}.{1}.{2}".format(*sys.version_info[:3])
-    assert _check_output("python2") == "Python 2.7.16"
+    assert _check_output("python2") == "Python 2.7.17"
     assert (
         _check_output("python3") == "Python {0}.{1}.{2}".format(*sys.version_info[:3])
         if sys.version_info[0] == 3
-        else "Python 3.8.0"
+        else "Python 3.8.2"
     )
 
 
