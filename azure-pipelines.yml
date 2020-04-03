@@ -6,6 +6,6 @@ pool:
 
 
 steps:
-- script: 2.0/build.sh
-  displayName: 'Build 2.0'
+- script: 2.1/build.sh
+  displayName: 'Build 2.1'
   timeoutInMinutes: 60
